@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <div id="nav" v-if="$route.path != '/clothing-list'">
       <router-link tag="div" to="/"><span>Measure</span></router-link>
       <router-link tag="div" to="/custom"><span>Custom</span></router-link>
       <router-link tag="div" to="/me"><span>Me</span></router-link>
