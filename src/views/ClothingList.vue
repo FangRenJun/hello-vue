@@ -58,7 +58,7 @@
          padding: 8px;
          padding-bottom: 16px;
          white-space: nowrap;
-         overflow: hidden;
+         overflow-y: scroll;
          .brand-item{
             display: inline-block;
              padding: 0  10px;
