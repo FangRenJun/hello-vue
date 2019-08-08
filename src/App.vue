@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div id="nav" v-if="$route.path != '/clothing-list'">
+    <div id="nav"  v-if="this.location.pathname.indexOf('/clothes') != 0 && this.location.pathname.indexOf('/clothing-list') != 0 ">
       <router-link tag="div" to="/"><span>Measure</span></router-link>
       <router-link tag="div" to="/custom"><span>Custom</span></router-link>
       <router-link tag="div" to="/me"><span>Me</span></router-link>
@@ -11,7 +11,13 @@
 
 <script>
   import './assets/iconfont/iconfont.css'
-  export default {}
+  export default {
+    data(){
+      return {
+        location: window.location,
+      }
+    }
+  }
 </script>
 
 <style lang="less">
@@ -35,6 +41,7 @@
   display: flex;
   justify-content: space-around;
   background: #1c232c;
+  width: 100vw;
   span {
     font-weight: bold;
     color: white;

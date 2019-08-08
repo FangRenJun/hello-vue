@@ -8,13 +8,14 @@
             </div>
             <div class="swiper-pagination"></div>
         </div>
-        <div>
+        <div class="item">
             <p>{{carouselUrl.cloth_name}}</p>
-            <p><span>{{carouselUrl.price}}</span><span>{{carouselUrl.sale_price}}</span></p>
+            <p><span>原价：{{carouselUrl.price/100}}</span><span>售价：{{carouselUrl.sale_price/100}}</span></p>
         </div>
-        <div>
+        <div class="main">
             <p>详情</p>
-            <div v-html="carouselUrl.instructions">
+            <div class="de">
+                <div v-html="carouselUrl.instructions"></div>
             </div>
         </div>
     </div>
@@ -64,7 +65,23 @@
             width: 100%;
         }
     }
-    div{
+    .item{
+        p:first-child{
+            text-align: center;
+        }
+        p{
+            span:last-child{
+                color: #a4925a;
+            }
+        }
+    }
+    .main{
+        padding: 20px;
+    }
+    .de{
+        width: 100%;
+    }
+    p{
         img{
             width: 100%;
         }
