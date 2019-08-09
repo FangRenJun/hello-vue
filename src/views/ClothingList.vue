@@ -1,7 +1,21 @@
 <template>
     <div>
         <div class="brand">
-            <span class="brand-item"  v-for="brands in brand.brand_list" :key="brands.id">{{brands.supplier_name}}</span>
+            <router-link  tag="span"
+                          class="brand-item"
+                          @click.native="getClothes"
+                          :to="'/clothing-list?categoryBoxID='+ $route.query.categoryBoxID + '&supplier_id=0'"
+                          >
+                全部
+            </router-link>
+            <router-link  tag="span"
+                          class="brand-item"
+                          v-on:click.native="getClothes(brands.supplier_id)"
+                          :to="'/clothing-list?categoryBoxID='+ $route.query.categoryBoxID + '&supplier_id='+ brands.supplier_id"
+                          v-for="brands in brand.brand_list"
+                          :key="brands.supplier_id">
+                {{brands.supplier_name}}
+            </router-link>
         </div>
         <div class="clothes-list">
             <router-link tag="div" :to="'/clothes/'+cloth.id " v-for="cloth in clothes" :key="cloth.id">
@@ -39,8 +53,9 @@
                     })
                     .catch( err => console.log( err ))
             },
-            getClothes () {
-                axios.post( '/wxapi/measure_wxbk/categoriesbox/getcloths', { categoriesbox_id : parseInt(this.$route.query.categoryBoxID), supplier_id: 0 })
+            getClothes (id = 0) {
+                id = parseInt(id);
+                axios.post( '/wxapi/measure_wxbk/categoriesbox/getcloths', { categoriesbox_id : parseInt(this.$route.query.categoryBoxID), supplier_id: id })
                     .then( res => {
                         if( res.data.success ) {
                             this.clothes = res.data.data
@@ -53,7 +68,9 @@
 </script>
 
 <style scoped lang="less">
-
+    .router-link-exact-active{
+        border-bottom: 2px solid goldenrod;
+    }
      .brand{
          padding: 8px;
          padding-bottom: 16px;
@@ -61,7 +78,7 @@
          overflow-y: scroll;
          .brand-item{
             display: inline-block;
-             padding: 0  10px;
+             padding: 0  15px 5px;
          }
         }
     .clothes-list{

@@ -21,6 +21,9 @@
 </script>
 
 <style lang="less">
+  .router-link-exact-active{
+    color: #a4925a;
+  }
 * {
   margin: 0;
   padding: 0;
@@ -42,12 +45,9 @@
   justify-content: space-around;
   background: #1c232c;
   width: 100vw;
+  color: white;
   span {
     font-weight: bold;
-    color: white;
-    &.router-link-exact-active {
-      color: #a4925a;
-    }
   }
 }
 </style>
